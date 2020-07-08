@@ -1,0 +1,3 @@
+if (self.CavalryLogger) { CavalryLogger.start_js(["ZyPY+"]); }
+
+__d("relay-runtime/handlers/connection/MutationHandlers",[],(function(a,b,c,d,e,f){"use strict";a={update:function(a,b){var c=a.get(b.dataID);if(c!=null){c=c.getValue(b.fieldKey);typeof c==="string"&&a["delete"](c)}}};e.exports={DeleteRecordHandler:a}}),null);
