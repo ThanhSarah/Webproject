@@ -24,24 +24,25 @@
     <?php 
     include "includes/top-header.php";
     include 'includes/header.php';
+    if ($_GET['name'] == 'giay-nam'){
+        $name = 'Giày Nam';
+    }
+    else if ($_GET['name'] == 'giay-nu')
+    {
+        $name ="Giày Nữ";
+    }
+    else{
+        $name='Phụ Kiện';
+    }
     ?>
     <hr>
     <div class="container">
         <div class="name-page">
-            <h6><a href="index.php">Trang chủ</a><span> / Sandal</span></h6>
+            <h6><a href="index.php">Trang chủ</a><span> / <?php echo $name;?> </span></h6>
         </div>
         <br>
         <?php 
-            if ($_GET['name'] == 'giay-nam'){
-                $name = 'Giày Nam';
-            }
-            else if ($_GET['name'] == 'giay-nu')
-            {
-                $name ="Giày Nu";
-            }
-            else{
-                $name='Phụ Kiện';
-            }
+            
             $select1='SELECT p.*, c.categoryName FROM products AS p, categories AS c WHERE p.category_id= c.id AND c.categoryName LIKE "'.$name.'" ';
             $result1=mysqli_query($con, $select1);
         ?>
