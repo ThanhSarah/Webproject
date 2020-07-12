@@ -56,72 +56,17 @@ if(isset($_GET['action']) && $_GET['action']=="wishlist"){
         <br>
         <div class="product">
             <div class="container">
-                <div id="cao-got">
-                    <h3 class="title">----------------------------------------GIÀY CAO
-                        GÓT----------------------------------------
-                    </h3>
-                    <span class="more"><a href="products.php?name=giay-cao-got">>>Xem thêm<<</a> </span> <br>
-                                <?php 
-                      $select1='SELECT p.*, c.categoryName FROM products AS p, categories AS c WHERE p.category_id= c.id AND c.categoryName LIKE "Giày cao gót" LIMIT 4';
-                      $result1=mysqli_query($con, $select1);
-                    ?>
-                                <div class="row">
-                                    <?php  while($row1=mysqli_fetch_array($result1)){?>
-                                    <div class="col-sm-3">
-                                        <div class="col-item">
-                                            <div class="photo">
-                                                <img src="image-product/<?php echo htmlentities($row1['category_id']);?>/<?php echo htmlentities($row1['image']);?>"
-                                                    class="img-responsive" alt="a" style="width:100%; height:250px" />
-                                            </div>
-                                            <div class="info">
-                                                <div class="row">
-                                                    <div class="price col-md-12">
-                                                        <h5>
-                                                            <?php echo htmlentities($row1['name']);?>
-                                                        </h5>
+                
 
-                                                        <h5 class="price-text-color">
-                                                            <?php echo htmlentities($row1['price']);?> đ
-                                                            <span>
-                                                                <a
-                                                                    href="index.php?page=product&action=wishlist&id=<?php echo $row1['id']; ?>">
-                                                                    <i class="fa fa-heart" aria-hidden="true"></i>
-                                                                </a>
-                                                            </span>
-                                                        </h5>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="info">
-                                                <div class="separator clear-left">
-                                                    <p class="btn-add">
-                                                        <i class="fa fa-shopping-cart"></i><a
-                                                            href="index.php?page=product&action=add&id=<?php echo $row1['id']; ?>"
-                                                            class="hidden-sm">Thêm vào giỏ
-                                                            hàng</a>
-                                                    </p>
-                                                    <p class="btn-details">
-                                                        <i class="fa fa-list"></i><a
-                                                            href="detail.php?quanly=detail&id=<?php echo $row1['id']?>"
-                                                            class="hidden-sm">Chi tiết</a>
-                                                    </p>
-                                                </div>
-                                                <div class="clearfix">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <?php }?>
-                                </div>
-                </div>
-                <br>
                 <div id="the-thao">
-                    <h3 class="title">----------------------------------------GIÀY THỂ
-                        THAO---------------------------------
+                    <h3 class="title">
+                    ------------------------------------------
+                    GIÀY NAM
+                    ------------------------------------------
                     </h3>
-                    <span class="more"><a href="products.php?name=giay-the-thao">>>Xem thêm<<</a> </span> <br>
+                    <span class="more"><a href="products.php?name=giay-nam">>>Xem thêm<<</a> </span> <br>
                                 <?php 
-                      $select1='SELECT p.*, c.categoryName FROM products AS p, categories AS c WHERE p.category_id= c.id AND c.categoryName LIKE "Giày thể thao" LIMIT 4';
+                      $select1='SELECT p.*, c.categoryName FROM products AS p, categories AS c WHERE p.category_id= c.id AND c.categoryName LIKE "Giày Nam" LIMIT 4';
                       $result1=mysqli_query($con, $select1);
                     ?>
                                 <div class="row">
@@ -178,12 +123,14 @@ if(isset($_GET['action']) && $_GET['action']=="wishlist"){
                 </div>
                 <br>
                 <div id="bup-be">
-                    <h3 class="title">----------------------------------------GIÀY BÚP
-                        BÊ----------------------------------------
+                    <h3 class="title">
+                    -------------------------------------------
+                    GIÀY NỮ
+                    -------------------------------------------
                     </h3>
-                    <span class="more"><a href="products.php?name=giay-bup-be">>>Xem thêm<<</a> </span> <br>
+                    <span class="more"><a href="products.php?name=giay-nu">>>Xem thêm<<</a> </span> <br>
                                 <?php 
-                      $select1='SELECT p.*, c.categoryName FROM products AS p, categories AS c WHERE p.category_id= c.id AND c.categoryName LIKE "Giày búp bê" LIMIT 4';
+                      $select1='SELECT p.*, c.categoryName FROM products AS p, categories AS c WHERE p.category_id= c.id AND c.categoryName LIKE "Giày Nữ" LIMIT 4';
                       $result1=mysqli_query($con, $select1);
                     ?>
                                 <div class="row">
@@ -239,11 +186,13 @@ if(isset($_GET['action']) && $_GET['action']=="wishlist"){
                 <br>
                 <div id="sandal">
                     <h3 class="title">
-                        ------------------------------------------SANDAL------------------------------------------
+                    -------------------------------------------
+                    PHỤ KIỆN
+                    -------------------------------------------
                     </h3>
-                    <span class="more"><a href="products.php?name=sandal">>>Xem thêm<<</a> </span> <br>
+                    <span class="more"><a href="products.php?name=phu-kien">>>Xem thêm<<</a> </span> <br>
                                 <?php 
-                      $select1='SELECT p.*, c.categoryName FROM products AS p, categories AS c WHERE p.category_id= c.id AND c.categoryName LIKE "Sandal" LIMIT 4';
+                      $select1='SELECT p.*, c.categoryName FROM products AS p, categories AS c WHERE p.category_id= c.id AND c.categoryName LIKE "Phụ Kiện" LIMIT 4';
                       $result1=mysqli_query($con, $select1);
                     ?>
                                 <div class="row">
@@ -294,6 +243,35 @@ if(isset($_GET['action']) && $_GET['action']=="wishlist"){
                                     </div>
                                     <?php }?>
                                 </div>
+                </div>
+                <br>
+                <div id="cao-got">
+                    <h3 class="title">
+                    --------------------------------------------
+                    TIN TỨC
+                    -------------------------------------------
+                    </h3>
+                    <span class="more"><a href="blog.php">>>Xem thêm<<</a> </span> <br>
+                    <?php 
+                    $select1="SELECT * FROM `blog` ORDER BY id DESC LIMIT 3";
+                    $result1=mysqli_query($con, $select1);
+                    
+                    while($row=mysqli_fetch_array($result1)){?>
+                    <h3><a href="blog-detail.php?id=<?php echo $row["id"];?>"><font color="red"><?php echo $row["title"];?></font></a></h3>
+			        <table>
+				        <tr>
+					        <td><img src="image-blog/<?php 
+						        if ($row["image"]<>"") {
+							        echo $row["image"];
+						        } else {
+							        echo "no_image.png";
+						        }
+					        ;?>" width="180px" height="auto"></td>
+					        <td style="vertical-align: top;"><p class="motanoidung"><i><?php echo $row["description"];?></i></p></td>
+				        </tr>
+			        </table>
+			        <hr>
+                    <?php }?>
                 </div>
             </div>
         </div>

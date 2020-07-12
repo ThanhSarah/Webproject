@@ -9,17 +9,17 @@
             <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
                 <h6 class="text-uppercase font-weight-bold">Products</h6>
                 <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-                <p>
+                <!-- <p>
                     <a href="#!">Giày cao gót</a>
+                </p> -->
+                <p>
+                    <a href="#!">Giày Nam</a>
                 </p>
                 <p>
-                    <a href="#!">Giày thể thao</a>
+                    <a href="#!">Giày Nữ</a>
                 </p>
                 <p>
-                    <a href="#!">Giày búp bê</a>
-                </p>
-                <p>
-                    <a href="#!">Sandal</a>
+                    <a href="#!">Phụ kiện</a>
                 </p>
 
             </div>

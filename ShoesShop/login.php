@@ -1,62 +1,45 @@
 <?php 
-session_start();
-error_reporting(0);
+
 include "includes/dbconnection.php";
 if(isset($_POST['login']))
 {
     $username=$_POST['username'];
     $password=$_POST['password'];
-    $query=mysqli_query($con,"SELECT * FROM users WHERE username='$username' and password='$password'");
-    $num=mysqli_fetch_array($query);
-    if($num>0)
+    $sql = "
+        SELECT * 
+        FROM `users` 
+        WHERE `username`= '".$username."' AND `password` = '".$password."'
+    ";
+    $query=mysqli_query($con,$sql);
+    $row=mysqli_fetch_array($query);
+    $num=mysqli_num_rows($query);
+    if($num==0)
     {
-        $extra="index.php";
-        $_SESSION['ulogin']=$_POST['username'];
-        $_SESSION['id']=$num['id'];
-        $_SESSION['username']=$num['fullname'];
-        $uip=$_SERVER['REMOTE_ADDR'];
-        $status=1;
-        $log=mysqli_query($con,"insert into userlog(username,userip,action) values('".$_SESSION['login']."','$uip','$status')");
-        $host=$_SERVER['HTTP_HOST'];
-        $uri=rtrim(dirname($_SERVER['PHP_SELF']),'/\\');
-        header("location:http://$host$uri/$extra");
-        exit();
+        echo 
+		"
+			<script type='text/javascript'>
+				window.alert('Đăng nhập thất bại! Tên đăng nhập hoặc mật khẩu không đúng!');
+			</script>
+        ";
+        echo 
+		"
+			<script type='text/javascript'>
+				window.location.href = './login.php'
+			</script>
+        ";
     }
     else
     {
-        $extra="login.php";
-        $username=$_POST['username'];
-        $uip=$_SERVER['REMOTE_ADDR'];
-        $status=0;
-        $log=mysqli_query($con,"insert into userlog(username,userip,action) values('$username','$uip','$action')");
-        $host=$_SERVER['HTTP_HOST'];
-        $uri=rtrim(dirname($_SERVER['PHP_SELF']),'/\\');
-        header("location:http://$host$uri/$extra");
-        $_SESSION['errmsg']="Tên đăng nhập hoặc mật khẩu không đúng";
-        exit();
-    }
-}
-if(isset($_POST['submit']))
-{
-    $userName=$_POST['userName'];
-    echo  $userName;
-    $password=$_POST['password'];
-    echo  $password;
-    $cusName=$_POST['cusName'];
-    echo  $cusName;
-    $email=$_POST['email'];
-    echo  $email;
-    $address=$_POST['address'];
-    echo  $address;
-    $phone=$_POST['phone'];
-    echo  $phone;
-    $query=mysqli_query($con,"INSERT INTO users(fullname,username,password,email,address,phone) values('$cusName','$userName','$password','$email', '$address','$phone')");
-    if($query)
-    {
-        echo "<script>alert('Bạn đã đăng ký thành công');</script>";
-    }
-    else{
-    echo "<script>alert('Đăng ký không thành công!');</script>";
+        session_start();
+        $_SESSION['ulogin']=$_POST['username'];
+        $_SESSION['id']=$row['id'];
+        $_SESSION['username']=$row['fullname'];
+        echo 
+		"
+			<script type='text/javascript'>
+				window.location.href = './index.php'
+			</script>
+		";
     }
 }
 ?>
@@ -115,7 +98,7 @@ if(isset($_POST['submit']))
                             <!-- Button -->
 
                             <div class="col-sm-12 controls">
-                                <button type='submit' id="btn-login" class="btn btn-success" name="login">Login </a>
+                                <button type='submit' id="btn-login" class="btn btn-success" name="login">Login </buton>
                             </div>
                         </div>
 
@@ -124,7 +107,7 @@ if(isset($_POST['submit']))
                             <div class="col-md-12 control">
                                 <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%">
                                     Don't have an account!
-                                    <a href="#" onClick="$('#loginbox').hide(); $('#signupbox').show()">
+                                    <a href="signup.php">
                                         Sign Up Here
                                     </a>
                                 </div>
@@ -134,71 +117,7 @@ if(isset($_POST['submit']))
                 </div>
             </div>
         </div>
-        <div id="signupbox" style="display:none; margin-top:50px"
-            class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-            <div class="panel panel-info">
-                <div class="panel-heading">
-                    <div class="panel-title">
-                        <h3>Đăng ký</h3>
-                    </div>
-                </div>
-                <div class="panel-body">
-                    <form id="signupform" class="form-horizontal" role="form" action='' method="POST">
-                        <div class="form-group">
-                            <div class="col-md-9">
-                                <input type="text" class="form-control" name="userName" placeholder="Tên đăng nhập"
-                                    required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-9">
-                                <input type="password" class="form-control" name="password" placeholder="Mật khẩu"
-                                    required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-9">
-                                <input type="text" class="form-control" name="cusName" placeholder="Họ và tên" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-9">
-                                <input type="text" class="form-control" name="email" placeholder="Email">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-9">
-                                <input type="text" class="form-control" name="address" placeholder="Địa chỉ" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-9">
-                                <input type="text" class="form-control" name="phone" placeholder="Số điện thoại"
-                                    required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <!-- Button -->
-                            <div class="col-md-offset-3 col-md-9">
-                                <button id="btn-signup" type="submit" class="btn btn-info"><i
-                                        class="icon-hand-right" name="submit"></i> &nbsp Đăng ký</button>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-12 control">
-                                <div style="border-top: 1px solid#888; padding-top:15px; font-size:70%">
-                                    Bạn có tài khoản!
-                                    <a id="signinlink" href="#" onclick="$('#signupbox').hide(); $('#loginbox').show()">
-                                        Đăng nhập
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+        
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

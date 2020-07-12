@@ -8,49 +8,49 @@
                 <div class="header-catagory">
                     <ul class="header-right-menu">
                         <li>
-                            <a href="products.php?name=giay-cao-got">
+                            <a href="products.php?name=giay-nam">
                                 <div class="header-sub-category">
                                     <span>
                                         <img class="img" src="image-page/caogot.png" alt="">
                                     </span>
                                     <b class="detail">
-                                        Giày cao gót
+                                        Giày Nam
                                     </b>
                                 </div>
                             </a>
                         </li>
                         <li>
-                            <a href="products.php?name=giay-the-thao">
+                            <a href="products.php?name=giay-nu">
                                 <div class="header-sub-category">
                                     <span>
                                         <img class="img" src="image-page/sport.png" alt="">
                                     </span>
                                     <b class="detail">
-                                        Giày thể thao
+                                        Giày Nữ
                                     </b>
                                 </div>
                             </a>
                         </li>
                         <li>
-                            <a href="products.php?name=giay-bup-be">
+                            <a href="products.php?name=phu-kien">
                                 <div class="header-sub-category">
                                     <span>
                                         <img class="img" src="image-page/bupbe.png" alt="">
                                     </span>
                                     <b class="detail">
-                                        Giày búp bê
+                                        Phụ Kiện
                                     </b>
                                 </div>
                             </a>
                         </li>
                         <li>
-                            <a href="products.php?name=sandal">
+                            <a href="blog.php">
                                 <div class="header-sub-category">
                                     <span>
                                         <img class="img" src="image-page/sandal.png" alt="">
                                     </span>
                                     <b class="detail">
-                                        Sandal
+                                        Tin Tức
                                     </b>
                                 </div>
                             </a>
@@ -71,7 +71,7 @@
             </div>
             <div class="col-md-1">
                 <div class="cart">
-                    <a href="card.php" class="basket"><i class="fa fa-shopping-basket" aria-hidden="true"></i>
+                    <a href="cart.php" class="basket"><i class="fa fa-shopping-basket" aria-hidden="true"></i>
                         <?php 
                           error_reporting(0);
                         $totalquantity=0;

@@ -14,7 +14,7 @@
                 </ul>
 
                 <div class="top-right-in-out">
-                    <span class="top-right-in">Xin chào: <?php echo htmlentities($_SESSION['username']);?></span>
+                    <span class="top-right-in">Xin chào: <?php echo $_SESSION['username'];?></span>
                     <span class="top-right-out"><a href="logout.php">Đăng xuất</a></span>
                 </div>
             </div>
@@ -34,7 +34,7 @@
                 <div class="top-right-in-out">
                     <span class="top-right-in"><a href="login.php">Đăng nhập</a>
                     </span>
-                    <span class="top-right-out"><a href="">Đăng ký</a> </span>
+                    <span class="top-right-out"><a href="signup.php">Đăng ký</a> </span>
                 </div>
             </div>
         </div>

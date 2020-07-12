@@ -32,18 +32,15 @@
         </div>
         <br>
         <?php 
-            if ($_GET['name'] == 'giay-cao-got'){
-                $name = 'Giày cao gót';
+            if ($_GET['name'] == 'giay-nam'){
+                $name = 'Giày Nam';
             }
-            else if ($_GET['name'] == 'giay-the-thao')
+            else if ($_GET['name'] == 'giay-nu')
             {
-                $name ="Giày thể thao";
-            }
-            else if ($_GET['name'] == 'giay-bup-be'){
-                $name='Giày búp bê';
+                $name ="Giày Nu";
             }
             else{
-                $name='Sandal';
+                $name='Phụ Kiện';
             }
             $select1='SELECT p.*, c.categoryName FROM products AS p, categories AS c WHERE p.category_id= c.id AND c.categoryName LIKE "'.$name.'" ';
             $result1=mysqli_query($con, $select1);
@@ -89,7 +86,6 @@
             <?php }?>
         </div>
     </div>
-    bs3-card
     <?php include 'includes/footer.php';?>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

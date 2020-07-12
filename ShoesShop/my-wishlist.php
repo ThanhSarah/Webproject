@@ -2,7 +2,13 @@
     session_start();
     error_reporting(0);
     include "includes/dbconnection.php"; 
-   
+    if (isset($_GET['del'])) {
+        $id = $_GET['id'];
+        echo $id;
+        mysqli_query($con, "DELETE FROM wishlist WHERE id_wishlist=$id");
+        $_SESSION['message'] = "Address deleted!"; 
+        header('location: my-wishlist.php');
+    }
 ?>
 <!doctype html>
 <html lang="en">
@@ -34,7 +40,7 @@
             <div class="col-md-12 left">
                 <div class="row">
                     <?php 
-                    $select=" SELECT  p.*,w.* FROM wishlist w, products p, users u WHERE w.user_id = 1 AND w.user_id= u.id AND w.product_id=p.id";
+                    $select=" SELECT  p.*,w.* FROM wishlist w, products p, users u WHERE w.user_id = '".$_SESSION['id']."' AND w.user_id= u.id AND w.product_id=p.id";
                     $result=mysqli_query($con, $select);
                     while($row1=mysqli_fetch_array($result)){
                     ?>
@@ -54,6 +60,9 @@
                                         <h5 class="price-text-color">
                                             <?php echo htmlentities($row1['price']);?> đ
                                         </h5>
+                                        <a href="my-wishlist.php?&del=delete&id=<?php echo $row1['id_wishlist']?>"
+                                        onClick="return confirm('Are you sure you want to delete?')"><i
+                                            class="fa fa-remove" aria-hidden="true"></i></a></td>
                                     </div>
                                 </div>
                             </div>
