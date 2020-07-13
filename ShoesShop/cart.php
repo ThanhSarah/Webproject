@@ -7,7 +7,7 @@
     if (!empty($_SESSION['cart'])){
         unset($_SESSION['cart'][$name]);
     } 
-    header('location: card.php');
+    header("location:cart.php");
     }
 ?>
 <!doctype html>
@@ -39,7 +39,8 @@
         </div>
         <br>
         <?php 
-        if(isset($_SESSION['cart'])&& $_SESSION['cart']!=null){     
+        if(isset($_SESSION['cart'])&& $_SESSION['cart']!=null){    
+            //print_r($_SESSION['cart']);   
             $sql="SELECT * FROM products WHERE id IN (";     
                 foreach($_SESSION['cart'] as $id => $value) { 
                     $sql.=$id.","; 
@@ -54,6 +55,7 @@
                     <th>Tên sản phẩm</th>
                     <th>Giá</th>
                     <th>Số lượng</th>
+                    <th>Size</th>
                     <th>Tổng tiền</th>
                     <th>...</th>
                 </tr>
@@ -73,8 +75,10 @@
                     <td><input class="form-control text-center"
                             value="<?php echo $_SESSION['cart'][$row['id']]['quantity'] ?>"
                             name="<?php echo $row[id]?> " type="number" style="width:100px">
+                    </td>
+                    <td><?php echo $_SESSION['cart'][$id]['size'] ?> </td>   
                     <td><?php echo $subtotal?> đ</td>
-                    <td><a href="card.php?&del=delete&name=<?php echo $row['id']?>"
+                    <td><a href="cart.php?&del=delete&name=<?php echo $row['id']?>"
                             onClick="return confirm('Bạn có muốn xóa không?')"><i class="fa fa-remove"
                                 aria-hidden="true"></i></a></td>
                 </tr>

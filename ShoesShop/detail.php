@@ -16,7 +16,8 @@
                 $row_p=mysqli_fetch_array($query_p);
                 $_SESSION['cart'][$row_p['id']]=array("quantity" => 1, "price" => $row_p['price']);
                 echo "<script>alert('Bạn đã thêm vào giỏ hàng thành công!');</script>";
-                header('location:detail.php?quanly=detail&id=<?php echo $$row_p["id"]?>');
+                
+                header("location:detail.php?quanly=detail&id=$id");
 }
 }
 }
@@ -71,8 +72,8 @@
                              ?>
                         </div>
                         <div class="desc"><?php echo htmlentities($row['decription']);?> </div>
-                        <a href="">Mua ngay</a>
-                        <a href="detail.php?page=product&action=add & id=<?php echo $row['id']; ?>">Thêm vào giỏ hàng</a>
+                        <!-- <a href="">Mua ngay</a> -->
+                        <a href="detail.php?quanly=detail&action=add&id=<?php echo $row['id']; ?>">Thêm vào giỏ hàng</a>
                     </div>
                 </div>
             </div>

@@ -7,6 +7,8 @@
     header('location:login.php');
     }else{
         $totalprice=0;
+    
+   
 ?>
 <!doctype html>
 <html lang="en">
@@ -45,11 +47,28 @@
         $cusPhone=$_POST['cusPhone']; 
         $payment=$_POST['cate'];
         $userid=$_SESSION['id'];
-        $insert= "INSERT INTO orders( total, customerName,phonenumber,address, payment, user_id  ) VALUES ('$totalprice','$cusName','$cusPhone','$cusAddress','$payment','$quantity')"; 
+        $insert= "INSERT INTO `orders`(`id`, `total`, `date_order`, `status`, `payMent`, `user_id`) VALUES (NULL, '$totalprice', NULL,NULL,'$payment',$userid)"; 
         mysqli_query($con,$insert);
+        $sql="SELECT * from orders order by id desc limit 1";
+        $query=mysqli_query($con,$sql);
+        $row = mysqli_fetch_array($query);
+        $orderid=$row['id'];
+        $sql="SELECT * FROM products WHERE id IN (";     
+                foreach($_SESSION['cart'] as $id => $value) { 
+                    $sql.=$id.","; 
+                }   
+        $sql=substr($sql, 0, -1).") ORDER BY name ASC"; 
+        $query=mysqli_query($con,$sql);
+        while($row=mysqli_fetch_array($query)){
+            $productid=$row['id'];
+            $quantity=$_SESSION['cart'][$row['id']]['quantity'];
+            $sql="INSERT INTO `order_details`(`order_id`, `product_id`, `quantity`) VALUES ('".$orderid."','".$productid."','".$quantity."')";
+            mysqli_query($con,$sql);
+        }
         unset($_SESSION['cart']);
         header('location:index.php');
     }
+
     
     
     ?>
@@ -60,7 +79,8 @@
         </div>
         <br>
         <?php 
-        if(isset($_SESSION['cart'])&& $_SESSION['cart']!=null){     
+        if(isset($_SESSION['cart'])&& $_SESSION['cart']!=null){
+               
             $sql="SELECT * FROM products WHERE id IN (";     
                 foreach($_SESSION['cart'] as $id => $value) { 
                     $sql.=$id.","; 

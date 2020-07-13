@@ -3,12 +3,40 @@
   error_reporting(0);
   include "includes/dbconnection.php";
   
+  if(isset($_GET['action']) && $_GET['action']=="add"){
+    $id=intval($_GET['id']);
+    $cate=$_GET['name'];
+	if(isset($_SESSION['cart'][$id])){
+		$_SESSION['cart'][$id]['quantity']++;
+	}else{
+		$sql_p="SELECT * FROM products WHERE id= $id";
+		$query_p=mysqli_query($con,$sql_p);
+		if(mysqli_num_rows($query_p)!=0){
+			$row_p=mysqli_fetch_array($query_p);
+            $_SESSION['cart'][$row_p['id']]=array("quantity" => 1, "price" => $row_p['price']);
+            echo "<script>alert('Bạn đã thêm vào giỏ hàng thành công!');</script>";
+			header("location:products.php?name=$cate");
+		}
+	}
+}
 ?>
 <!doctype html>
 <html lang="en">
 
 <head>
-    <title>Sandal</title>
+<?php
+if ($_GET['name'] == 'giay-nam'){
+    $name = 'Giày Nam';
+}
+else if ($_GET['name'] == 'giay-nu')
+{
+    $name ="Giày Nữ";
+}
+else{
+    $name='Phụ Kiện';
+}
+?>
+    <title><?php echo $name?></title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -24,16 +52,8 @@
     <?php 
     include "includes/top-header.php";
     include 'includes/header.php';
-    if ($_GET['name'] == 'giay-nam'){
-        $name = 'Giày Nam';
-    }
-    else if ($_GET['name'] == 'giay-nu')
-    {
-        $name ="Giày Nữ";
-    }
-    else{
-        $name='Phụ Kiện';
-    }
+    
+    
     ?>
     <hr>
     <div class="container">
@@ -70,7 +90,7 @@
                     <div class="info">
                         <div class="separator clear-left">
                             <p class="btn-add">
-                                <i class="fa fa-shopping-cart"></i><a href="#" class="hidden-sm">Thêm vào giỏ
+                                <i class="fa fa-shopping-cart"></i><a href="products.php?page=product&action=add&id=<?php echo $row1['id']; ?>&name=<?php echo $_GET['name']?>" class="hidden-sm">Thêm vào giỏ
                                     hàng</a>
                             </p>
                             <p class="btn-details">
