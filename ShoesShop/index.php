@@ -2,9 +2,14 @@
   session_start();
   error_reporting(0);
   include "includes/dbconnection.php";
+//   if(isset($_GET['action']) && $_GET['action']=="addsize"){
+//     $siz=$_GET['size'];
+
+// }
+
   if(isset($_GET['action']) && $_GET['action']=="add"){
     $id=intval($_GET['id']);
-    $siz=$_GET['size'];
+    
 	if(isset($_SESSION['cart'][$id])&&$_SESSION['cart'][$id]['size']==$siz){
 		$_SESSION['cart'][$id]['quantity']++;
 	}else{
@@ -12,7 +17,7 @@
 		$query_p=mysqli_query($con,$sql_p);
 		if(mysqli_num_rows($query_p)!=0){
 			$row_p=mysqli_fetch_array($query_p);
-            $_SESSION['cart'][$row_p['id']]=array("quantity" => 1, "price" => $row_p['price'], "size"=>$siz);
+            $_SESSION['cart'][$row_p['id']]=array("quantity" => 1, "price" => $row_p['price']);
             echo "<script>alert('Bạn đã thêm vào giỏ hàng thành công!');</script>";
 			header('location:index.php');
 		}
@@ -34,7 +39,7 @@ if(isset($_GET['action']) && $_GET['action']=="wishlist"){
 <html lang="en">
 
 <head>
-    <title>ViAn Shop</title>
+    <title>QT STORE</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -98,13 +103,13 @@ if(isset($_GET['action']) && $_GET['action']=="wishlist"){
                                                 </div>
                                             </div>
                                             <!-- <div class="info">
-                                                <button type="button" style="border: none; padding: 9px 9px; text-align:center; font-size: 10px" onclick="<?php $size=38?>">38</button>
-                                                <button type="button" style="border: none; padding: 9px 9px; text-align:center; font-size: 10px" onclick="<?php $size=39?>">39</button>
-                                                <button type="button" style="border: none; padding: 9px 9px; text-align:center; font-size: 10px" onclick="<?php $size=40?>">40</button>
-                                                <button type="button" style="border: none; padding: 9px 9px; text-align:center; font-size: 10px" onclick="<?php $size=41?>">41</button>
-                                                <button type="button" style="border: none; padding: 9px 9px; text-align:center; font-size: 10px" onclick="<?php $size=42?>">42</button>
-                                                <button type="button" style="border: none; padding: 9px 9px; text-align:center; font-size: 10px" onclick="<?php $size=43?>">43</button>
-                                                <button type="button" style="border: none; padding: 9px 9px; text-align:center; font-size: 10px" onclick="<?php $size=44?>">44</button>
+                                                <a href="index.php?action=addsize&size=38">| 38</a>
+                                                <a href="index.php?action=addsize&size=39">| 39</a>
+                                                <a href="index.php?action=addsize&size=38">| 40</a>
+                                                <a href="index.php?action=addsize&size=38">| 41</a>
+                                                <a href="index.php?action=addsize&size=38">| 42</a>
+                                                <a href="index.php?action=addsize&size=38">| 43</a>
+                                                <a href="index.php?action=addsize&size=38">| 44 |</a>
                                             </div> -->
                                             <div class="info">
                                                 <div class="separator clear-left">

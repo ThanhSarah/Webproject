@@ -52,7 +52,7 @@ exit();
         <div class="container-login100">
             <div class="wrap-login100">
                 <div class="login100-pic js-tilt" data-tilt>
-                    <img src="../image-page/logo.PNG" alt="IMG">
+                    <img src="../image-page/logo3.PNG" alt="IMG">
                 </div>
                 <form class="login100-form validate-form" action="" method="POST" role="form">
                     <span class="login100-form-title" >

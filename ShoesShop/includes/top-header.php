@@ -21,7 +21,7 @@
             <?php } else{ ?>
             <div class="top-left col-md-3">
                 <span class="top-left-phone"><i class="fa fa-phone" aria-hidden="true"></i> 0965708150</span>
-                <span class="top-left-email"><i class="fa fa-envelope-o" aria-hidden="true"></i> shoesshop.shop@gmail.com
+                <span class="top-left-email"><i class="fa fa-envelope-o" aria-hidden="true"></i> QTstore.shop@gmail.com
                 </span>
             </div>
             <div class="top-right col-md-9">

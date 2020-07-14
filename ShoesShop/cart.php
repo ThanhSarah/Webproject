@@ -55,7 +55,6 @@
                     <th>Tên sản phẩm</th>
                     <th>Giá</th>
                     <th>Số lượng</th>
-                    <th>Size</th>
                     <th>Tổng tiền</th>
                     <th>...</th>
                 </tr>
@@ -76,7 +75,7 @@
                             value="<?php echo $_SESSION['cart'][$row['id']]['quantity'] ?>"
                             name="<?php echo $row[id]?> " type="number" style="width:100px">
                     </td>
-                    <td><?php echo $_SESSION['cart'][$id]['size'] ?> </td>   
+                    <!-- <td><?php echo $_SESSION['cart'][$id]['size'] ?> </td>    -->
                     <td><?php echo $subtotal?> đ</td>
                     <td><a href="cart.php?&del=delete&name=<?php echo $row['id']?>"
                             onClick="return confirm('Bạn có muốn xóa không?')"><i class="fa fa-remove"
