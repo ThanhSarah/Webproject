@@ -2,9 +2,15 @@
   session_start();
   error_reporting(0);
   include "includes/dbconnection.php";
+//   if(isset($_GET['action']) && $_GET['action']=="addsize"){
+//     $siz=$_GET['size'];
+
+// }
+
   if(isset($_GET['action']) && $_GET['action']=="add"){
-	$id=intval($_GET['id']);
-	if(isset($_SESSION['cart'][$id])){
+    $id=intval($_GET['id']);
+    
+	if(isset($_SESSION['cart'][$id])&&$_SESSION['cart'][$id]['size']==$siz){
 		$_SESSION['cart'][$id]['quantity']++;
 	}else{
 		$sql_p="SELECT * FROM products WHERE id= $id";
@@ -33,7 +39,7 @@ if(isset($_GET['action']) && $_GET['action']=="wishlist"){
 <html lang="en">
 
 <head>
-    <title>ViAn Shop</title>
+    <title>QT STORE</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -56,7 +62,79 @@ if(isset($_GET['action']) && $_GET['action']=="wishlist"){
         <br>
         <div class="product">
             <div class="container">
-                
+            <div id="the-thao">
+                    <h3 class="title">
+                    -------------------------------------
+                    SẢN PHẨM NỔI BẬT
+                    ------------------------------------
+                    </h3>
+                    <!-- <span class="more"><a href="products.php?name=giay-nam">>>Xem thêm<<</a> </span> <br> -->
+                    <?php 
+                    $select1= "SELECT p.*, c.categoryName FROM products AS p, categories AS c, order_details AS o WHERE p.category_id= c.id and o.product_id=p.id GROUP BY o.product_id ORDER BY sum(o.quantity) DESC LIMIT 4";
+                    $result1=mysqli_query($con, $select1);
+                    ?>
+                                <div class="row">
+                                    <?php  while($row1=mysqli_fetch_array($result1)){?>
+                                    <div class="col-sm-3">
+                                        <div class="col-item">
+
+
+                                            <div class="photo">
+                                                <img src="image-product/<?php echo htmlentities($row1['category_id']);?>/<?php echo htmlentities($row1['image']);?>"
+                                                    class="img-responsive" alt="a" style="width:100%; height:250px" />
+                                            </div>
+                                            <div class="info">
+                                                <div class="row">
+                                                    <div class="price col-md-12">
+                                                        <h5>
+                                                            <?php echo htmlentities($row1['name']);?>
+                                                        </h5>
+
+                                                        <h5 class="price-text-color">
+                                                            <?php echo htmlentities($row1['price']);?> đ
+                                                            <span>
+                                                                <a
+                                                                    href="index.php?page=product&action=wishlist&id=<?php echo $row1['id']; ?>">
+                                                                    <i class="fa fa-heart" aria-hidden="true"></i>
+                                                                </a>
+                                                            </span>
+                                                        </h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- <div class="info">
+                                                <a href="index.php?action=addsize&size=38">| 38</a>
+                                                <a href="index.php?action=addsize&size=39">| 39</a>
+                                                <a href="index.php?action=addsize&size=38">| 40</a>
+                                                <a href="index.php?action=addsize&size=38">| 41</a>
+                                                <a href="index.php?action=addsize&size=38">| 42</a>
+                                                <a href="index.php?action=addsize&size=38">| 43</a>
+                                                <a href="index.php?action=addsize&size=38">| 44 |</a>
+                                            </div> -->
+                                            <div class="info">
+                                                <div class="separator clear-left">
+                                                    <p class="btn-add">
+                                                        <i class="fa fa-shopping-cart"></i><a
+                                                            href="index.php?page=product&action=add&id=<?php echo $row1['id']; ?>&size=<?php echo $size?>"
+                                                            class="hidden-sm">Thêm vào giỏ
+                                                            hàng</a>
+                                                    </p>
+                                                    <p class="btn-details">
+                                                        <i class="fa fa-list"></i><a
+                                                            href="detail.php?quanly=detail&id=<?php echo $row1['id']?>"
+                                                            class="hidden-sm">Chi
+                                                            tiết</a>
+                                                    </p>
+                                                </div>
+                                                <div class="clearfix">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <?php }?>
+                                </div>
+                </div>
+                <br>
 
                 <div id="the-thao">
                     <h3 class="title">

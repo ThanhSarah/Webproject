@@ -51,7 +51,7 @@ else{
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $query=mysqli_query($con,"SELECT products.name, users.fullname, users.username, orders.date_order, orders.payMent, orders.total, orders.status, order_details.quantity FROM (((order_detals JOIN orders ON orders.id=order_details.order_id) JOIN users ON orders.user_id=users.id) JOIN products ON order_detal.product_id=products.id) ");
+                            <?php $query=mysqli_query($con,"SELECT products.name, users.fullname, users.username, orders.* FROM (((order_details JOIN orders ON order_details.order_id=orders.id) JOIN users ON orders.user_id=users.id) JOIN products ON order_details.product_id=products.id)");
                             $cnt=1;
                             while($row=mysqli_fetch_array($query))
                             {

@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-2 header-image">
-                <a href="index.php"><img src="image-page/logo1.png" class="header-image" alt=""></a>
+                <a href="index.php"><img src="image-page/logo3.png" class="header-image" alt=""></a>
             </div>
             <div class="col-md-9">
                 <div class="header-catagory">
@@ -11,7 +11,7 @@
                             <a href="products.php?name=giay-nam">
                                 <div class="header-sub-category">
                                     <span>
-                                        <img class="img" src="image-page/caogot.png" alt="">
+                                        <img class="img" src="image-page/giaynam.png" alt="">
                                     </span>
                                     <b class="detail">
                                         Giày Nam
@@ -23,7 +23,7 @@
                             <a href="products.php?name=giay-nu">
                                 <div class="header-sub-category">
                                     <span>
-                                        <img class="img" src="image-page/sport.png" alt="">
+                                        <img class="img" src="image-page/giaynu.jpg" alt="">
                                     </span>
                                     <b class="detail">
                                         Giày Nữ
@@ -35,7 +35,7 @@
                             <a href="products.php?name=phu-kien">
                                 <div class="header-sub-category">
                                     <span>
-                                        <img class="img" src="image-page/bupbe.png" alt="">
+                                        <img class="img" src="image-page/phukien.jpg" alt="">
                                     </span>
                                     <b class="detail">
                                         Phụ Kiện
